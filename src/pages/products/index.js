@@ -1,7 +1,8 @@
 import ProductCard from "@/components/ProductCard"
+import Link from "next/link";
 
 export async function getStaticProps() {
-  const response = await fetch("https://fakestoreapi.com/products");
+  const response = await fetch("https://api.escuelajs.co/api/v1/products");
   const products = await response.json();
 
   return {
@@ -20,14 +21,14 @@ const Products = ({products}) => {
       </div>
       <div className="listing grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products?.map((product) => (
-          <ProductCard
-            key={product.id}
-            title={product.title}
-            price={product.price}
-            category={product.category}
-            description={product.description}
-            imageLink={product.image}
-          />
+          <Link key={product.id} href={`/products/${product.id}`}>
+            <ProductCard
+              title={product.title}
+              price={product.price}
+              description={product.description}
+              imageLink={product.images[1]}
+            />
+          </Link>
         ))}
       </div>
     </div>
