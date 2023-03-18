@@ -9,9 +9,9 @@ const ProductCard = ({title, price, description, imageLink}) => {
           {description.substring(0, 100)}
           <span className="px-2 text-blue-600 font-bold">...Know more</span>
         </p>
-        <p className="text-blue-700 mb-2 text-2xl font-bold">
-          &#36; {price}
-        </p>
+        <div>
+          <p className="text-blue-700 mb-2 text-2xl font-bold">&#36; {price}</p>
+        </div>
       </div>
     </div>
   );

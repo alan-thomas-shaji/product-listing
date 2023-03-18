@@ -1,5 +1,6 @@
 import ProductCard from "@/components/ProductCard"
 import Link from "next/link";
+import Head from "next/head";
 
 export async function getStaticProps() {
   const response = await fetch("https://api.escuelajs.co/api/v1/products");
@@ -15,18 +16,21 @@ export async function getStaticProps() {
 const Products = ({products}) => {
   return (
     <div>
-      <div className="text-center">
-        <h1 className="text-3xl font-bold">Products</h1>
-        <div>Searchbar</div>
-      </div>
-      <div className="listing grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <Head>
+        <title>Store</title>
+      </Head>
+      <div className="listing grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {products?.map((product) => (
-          <Link key={product.id} href={`/products/${product.id}`}>
+          <Link
+            key={product.id}
+            href={`/products/${product.id}`}
+            className="hover:scale-105 duration-150"
+          >
             <ProductCard
               title={product.title}
               price={product.price}
               description={product.description}
-              imageLink={product.images[1]}
+              imageLink={product.images[0]}
             />
           </Link>
         ))}
