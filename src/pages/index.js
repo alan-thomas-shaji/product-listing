@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "antd";
 
 export default function Home() {
   return (
@@ -18,9 +19,9 @@ export default function Home() {
       </p>
       <div className="flex justify-center mt-2">
         <Link href="/products">
-          <button className="bg-blue-500 rounded-md p-2 shadow-lg text-lg font-semibold">
+          <Button className="bg-blue-500" type="primary">
             Check Products Available
-          </button>
+          </Button>
         </Link>
       </div>
     </>
