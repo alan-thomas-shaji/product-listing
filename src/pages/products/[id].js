@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { Carousel } from "antd";
 
 export const getStaticPaths = async () => {
     const response = await fetch("https://api.escuelajs.co/api/v1/products");
@@ -30,19 +31,36 @@ export const getStaticProps = async (context) => {
     }
 }
 
-const Deatils = ({product}) => {
+const Details = ({product}) => {
+  const onChange = (currentSlide) => {
+    console.log(currentSlide);
+  };
   return (
-    <div>
+    <div className="">
       <Head>
         <title>
           {product.title} in {product.category.name}
         </title>
       </Head>
-      <div className="img-container flex justify-center shadow-lg">
-        <img src={product.images[0]} alt={product.title} />
-      </div>
+      <center>
+        <div className="mx-auto shadow-lg w-full">
+          <Carousel afterChange={onChange} className="mx-auto" autoplay>
+            <div>
+              <img src={product.images[0]} alt={product.title} />
+            </div>
+            <div>
+              <img src={product.images[1]} alt={product.title} />
+            </div>
+            <div>
+              <img src={product.images[2]} alt={product.title} />
+            </div>
+          </Carousel>
+        </div>
+      </center>
+
+      {/* </div> */}
       <div className="heading w-full p-2 border-spacing-2 flex justify-center">
-        <h1 className="text-3xl">{product.title}</h1>
+        <h1 className="text-3xl font-bold">{product.title}</h1>
       </div>
       <div className="description mt-2 flex justify-center">
         <p>{product.description}</p>
@@ -50,20 +68,8 @@ const Deatils = ({product}) => {
       <div className="price mt-2 flex justify-center">
         <p>${product.price}</p>
       </div>
-      <div className="images-extra">
-        <div className="">
-          <h1>All Images of the product</h1>
-        </div>
-        <div className="img-cont p-1 flex">
-          {product.images.map((image) => (
-            <div key={image} className="image-extra w-4/12">
-              <img src={image} alt={image} />
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
 
-export default Deatils
+export default Details
