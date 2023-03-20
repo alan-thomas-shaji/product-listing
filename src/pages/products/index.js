@@ -1,27 +1,44 @@
-import ProductCard from "@/components/ProductCard"
+import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 import Head from "next/head";
 import SearchBar from "@/components/SearchBar";
+import FilterCategory from "@/components/FilterCategory";
+import { useEffect, useState } from "react";
 
 export async function getStaticProps() {
-  const response = await fetch("https://api.escuelajs.co/api/v1/products");
-  const products = await response.json();
+  const response1 = await fetch("https://api.escuelajs.co/api/v1/products");
+  const response2 = await fetch("https://api.escuelajs.co/api/v1/categories");
+  const products = await response1.json();
+  const categories = await response2.json();
 
   return {
     props: {
-      products
+      products,
+      categories,
     },
   };
 }
 
-const Products = ({products}) => {
+const Products = ({
+  products,
+  categories,
+  selectedCategory,
+  setSelectedCategory,
+}) => {
+  const filteredProducts =
+    selectedCategory && selectedCategory.id
+      ? products.filter(
+          (product) => product.category.id === selectedCategory.id
+        )
+      : products;
+
   return (
     <div className="flex w-full">
       <Head>
         <title>Store</title>
       </Head>
       <div className="listing grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-9/12">
-        {products?.map((product) => (
+        {filteredProducts?.map((product) => (
           <Link
             key={product.id}
             href={`/products/${product.id}`}
@@ -38,9 +55,14 @@ const Products = ({products}) => {
       </div>
       <div className="sidebar w-3/12 m-1 p-1">
         <SearchBar products={products} />
+        <FilterCategory
+          categories={categories}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
       </div>
     </div>
   );
-}
+};
 
-export default Products
+export default Products;
