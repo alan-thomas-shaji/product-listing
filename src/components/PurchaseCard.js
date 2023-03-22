@@ -1,4 +1,5 @@
 import { Button } from "antd"
+import Ratings from "./Ratings"
 
 const PurchaseCard = ({price}) => {
   return (
@@ -10,6 +11,9 @@ const PurchaseCard = ({price}) => {
       </div>
       <div className="stock">
         <p className="text-xl p-2 text-green-700">In stock</p>
+        <div>
+          <Ratings score={Math.random()*5}/>
+        </div>
       </div>
       <div className="p-2">
         <Button type="primary" block className="bg-blue-500">

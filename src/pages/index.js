@@ -4,7 +4,7 @@ import { Button } from "antd";
 export default function Home() {
   return (
     <>
-      <h1 className="text-2xl">Home Page</h1>
+      <h1 className="text-2xl mt-16">Home Page</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor tempora
         voluptatum omnis accusamus voluptas. Odit eos aperiam dolorem deleniti
