@@ -37,7 +37,7 @@ const Details = ({product}) => {
     console.log(currentSlide);
   };
   return (
-    <div className="flex">
+    <div className="flex mt-16">
       <Head>
         <title>
           {product.title} in {product.category.name}

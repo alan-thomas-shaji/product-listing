@@ -22,7 +22,7 @@ const SearchBar = ({products}) => {
     };
 
     return (
-      <div className="w-full mx-1">
+      <div className="w-11/12 mx-1">
         <input
           type="text"
           value={query}

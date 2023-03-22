@@ -3,7 +3,6 @@ import Link from "next/link";
 import Head from "next/head";
 import SearchBar from "@/components/SearchBar";
 import FilterCategory from "@/components/FilterCategory";
-import { useEffect, useState } from "react";
 
 export async function getStaticProps() {
   const response1 = await fetch("https://api.escuelajs.co/api/v1/products");
@@ -33,33 +32,35 @@ const Products = ({
       : products;
 
   return (
-    <div className="flex w-full">
+    <div className="">
       <Head>
         <title>Store</title>
       </Head>
-      <div className="listing grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-9/12">
-        {filteredProducts?.map((product) => (
-          <Link
-            key={product.id}
-            href={`/products/${product.id}`}
-            className="hover:scale-105 duration-150"
-          >
-            <ProductCard
-              title={product.title}
-              price={product.price}
-              description={product.description}
-              imageLink={product.images[0]}
-            />
-          </Link>
-        ))}
-      </div>
-      <div className="sidebar w-3/12 m-1 p-1">
-        <SearchBar products={products} />
-        <FilterCategory
-          categories={categories}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
+      <div className="flex w-full mt-14">
+        <div className="listing grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-9/12">
+          {filteredProducts?.map((product) => (
+            <Link
+              key={product.id}
+              href={`/products/${product.id}`}
+              className="hover:scale-105 duration-150"
+            >
+              <ProductCard
+                title={product.title}
+                price={product.price}
+                description={product.description}
+                imageLink={product.images[0]}
+              />
+            </Link>
+          ))}
+        </div>
+        <div className="sidebar fixed top-14 right-0 w-3/12 mt-1 p-1">
+          <SearchBar products={products} />
+          <FilterCategory
+            categories={categories}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+          />
+        </div>
       </div>
     </div>
   );

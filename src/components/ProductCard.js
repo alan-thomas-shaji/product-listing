@@ -6,7 +6,7 @@ const ProductCard = ({title, price, description, imageLink}) => {
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">{title}</div>
         <p className="text-gray-700 text-base mb-2">
-          {description.substring(0, 100)}
+          {description.substring(0, 50)}
           <span className="px-2 text-blue-600 font-bold">...Know more</span>
         </p>
         <div>
