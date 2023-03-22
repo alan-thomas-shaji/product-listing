@@ -82,18 +82,12 @@ const Details = ({product}) => {
           <span className="text-md px-1">00</span>
         </div>
         <div className="categories p-2">
-          <a
-            href="#"
-            data-de-toggle="tooltip"
-            title="Browse other products in this category"
-          >
             <p className="text-xl">
               Categories:{" "}
               <span className="border-2 rounded-md p-2 text-lg hover:bg-blue-500 hover:text-white duration-150">
                 {product.category.name}
               </span>
             </p>
-          </a>
         </div>
       </div>
       <div className="w-3/12">
