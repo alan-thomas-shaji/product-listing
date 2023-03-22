@@ -10,7 +10,6 @@ const Ratings = ({score}) => {
     for(let i = score; i<4;i++){
         comps.push(<FavoriteBorderIcon />)
     };
-    console.log(comps)
 
   return (
     <div className="flex mx-2 py-2">

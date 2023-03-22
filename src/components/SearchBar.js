@@ -1,46 +1,67 @@
-import { useMemo, useState } from "react"
-import Fuse from "fuse.js"
-import Link from "next/link"
+import { useMemo, useState } from "react";
+import Fuse from "fuse.js";
+import Link from "next/link";
 
-const SearchBar = ({products}) => {
-    const [query, setQuery] = useState("");
-    const [results, setResults] = useState([]);
+const SearchBar = ({ products }) => {
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState([]);
+  const [toggle, setToggle] = useState(true);
 
-    const fuse = useMemo(()=>
-        new Fuse(products, {
-          keys: ["title", "category"],
-          includeScore: true,
-          threshold: 0.3,
-          distance: 100,
-        })
-    );
+  const fuse = useMemo(
+    () =>
+      new Fuse(products, {
+        keys: ["title", "category"],
+        includeScore: true,
+        threshold: 0.3,
+        distance: 100,
+      }),
+    [products]
+  );
 
-    const handleChange = (e) => {
-        const value = e.target.value;
-        setQuery(value);
-        setResults(fuse.search(value));
-    };
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setQuery(value);
+    setResults(fuse.search(value));
+    setToggle(true)
+  };
+  const hideResults = () => {
+    setResults([]);
+  };
 
-    return (
-      <div className="w-11/12 mx-1">
-        <input
-          type="text"
-          value={query}
-          onChange={e => handleChange(e)}
-          placeholder="Search Products"
-          className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none"
-        />
-        <ul className="w-full">
+  return (
+    <div className="relative w-11/12 mx-1">
+      <input
+        type="text"
+        value={query}
+        onChange={handleChange}
+        onFocus={handleChange}
+        onBlur={() => {
+          setTimeout(() => {
+            setToggle(false);
+          }, 250);
+        }}
+        placeholder="Search Products"
+        className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none"
+      />
+      {results.length > 0 && (
+        <ul
+          className={`absolute bg-white border border-gray-300 rounded-md py-2 mt-1 w-full z-10 ${
+            toggle ? "block" : "hidden"
+          }`}
+        >
           {results.map((result) => (
             <li key={result.item.id}>
-              <Link href={`/products/${result.item.id}`}>
-                <span className="w-full px-3">{result.item.title}</span>
+              <Link href={`/products/${result.item.id}`} onClick={hideResults}>
+                <div className="block px-3 py-2 hover:bg-gray-100">
+                  {result.item.title}
+                </div>
               </Link>
             </li>
           ))}
         </ul>
-      </div>
-    );
-}
+      )}
+    </div>
+  );
+};
 
-export default SearchBar
+export default SearchBar;

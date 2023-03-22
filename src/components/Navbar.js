@@ -1,6 +1,10 @@
 import Link from "next/link"
+import SearchBar from "./SearchBar";
+import { useContext } from "react";
+import { ProductsContext } from "@/context/ProductsContext";
 
 const Navbar = () => {
+  const products = useContext(ProductsContext)
   return (
     <nav className="fixed py-4 bg-blue-500 w-full top-0 left-0 z-10">
       <div className="container mx-auto flex justify-between items-center px-4">
@@ -10,6 +14,9 @@ const Navbar = () => {
               My Next.js Shopping App
             </div>
           </Link>
+        </div>
+        <div className="search w-6/12">
+          <SearchBar products={products} />
         </div>
         <div className="flex">
           <Link href="/">

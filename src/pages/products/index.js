@@ -1,7 +1,6 @@
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 import Head from "next/head";
-import SearchBar from "@/components/SearchBar";
 import FilterCategory from "@/components/FilterCategory";
 
 export async function getStaticProps() {
@@ -36,7 +35,7 @@ const Products = ({
       <Head>
         <title>Store</title>
       </Head>
-      <div className="flex w-full mt-14">
+      <div className="flex w-full mt-16">
         <div className="listing grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-9/12">
           {filteredProducts?.map((product) => (
             <Link
@@ -53,8 +52,7 @@ const Products = ({
             </Link>
           ))}
         </div>
-        <div className="sidebar fixed top-14 right-0 w-3/12 mt-1 p-1">
-          <SearchBar products={products} />
+        <div className="sidebar fixed top-20 right-0 w-3/12 mt-1 p-1">
           <FilterCategory
             categories={categories}
             selectedCategory={selectedCategory}
