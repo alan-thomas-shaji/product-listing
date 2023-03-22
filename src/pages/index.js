@@ -1,29 +1,20 @@
 import Link from "next/link";
 import { Button } from "antd";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   return (
-    <>
-      <h1 className="text-2xl mt-16">Home Page</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor tempora
-        voluptatum omnis accusamus voluptas. Odit eos aperiam dolorem deleniti
-        possimus quis officiis, doloremque hic vitae. Aperiam exercitationem est
-        iste beatae.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor tempora
-        voluptatum omnis accusamus voluptas. Odit eos aperiam dolorem deleniti
-        possimus quis officiis, doloremque hic vitae. Aperiam exercitationem est
-        iste beatae.
-      </p>
-      <div className="flex justify-center mt-2">
-        <Link href="/products">
-          <Button className="bg-blue-500" type="primary">
-            Check Products Available
-          </Button>
-        </Link>
+    <div className="p-4">
+      <div className="flex flex-col justify-center items-center mt-[65%] tablet:mt-[30%] desktop:mt-[20%]">
+        <h1>HomePage</h1>
+        <div className="flex flex-col items-center justify-center ">
+          <Link href="/products">
+            <Button className="bg-blue-500" type="primary" size="large">
+              Check Products Available
+            </Button>
+          </Link>
+        </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -31,11 +31,11 @@ const Products = ({
       : products;
 
   return (
-    <div className="">
+    <div className="tablet:mt-32 mobile:mt-36">
       <Head>
         <title>Store</title>
       </Head>
-      <div className="flex w-full mt-16">
+      <div className="flex w-full">
         <div className="listing grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-9/12">
           {filteredProducts?.map((product) => (
             <Link
@@ -52,7 +52,7 @@ const Products = ({
             </Link>
           ))}
         </div>
-        <div className="sidebar fixed top-20 right-0 w-3/12 mt-1 p-1">
+        <div className="sidebar fixed top-20 right-0 w-3/12 mt-14 p-1">
           <FilterCategory
             categories={categories}
             selectedCategory={selectedCategory}
