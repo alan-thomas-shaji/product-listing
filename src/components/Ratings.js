@@ -5,10 +5,10 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 const Ratings = ({score}) => {
     const comps = [];
     for(let i=0;i<score;i++){
-        comps.push(<FavoriteIcon />)
+        comps.push(<FavoriteIcon className='text-red-400' />)
     }
     for(let i = score; i<4;i++){
-        comps.push(<FavoriteBorderIcon />)
+        comps.push(<FavoriteBorderIcon className="text-red-400" />);
     };
 
   return (

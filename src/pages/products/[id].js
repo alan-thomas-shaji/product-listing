@@ -43,7 +43,7 @@ const Details = ({product}) => {
           {product.title} in {product.category.name}
         </title>
       </Head>
-      <div className="shadow-md tablet:w-6/12 p-1 rounded-md">
+      <div className="shadow-md tablet:w-6/12 p-1 rounded-md 2xl:w-5/12">
         <Carousel afterChange={onChange} autoplay>
           <div>
             <img
