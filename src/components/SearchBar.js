@@ -45,7 +45,7 @@ const SearchBar = ({ products }) => {
       />
       {results.length > 0 && (
         <ul
-          className={`absolute bg-white border border-gray-300 rounded-md py-2 mt-1 w-full z-10 ${
+          className={`absolute bg-white border border-gray-300 rounded-md py-2 mt-10 w-fit z-10 ${
             toggle ? "block" : "hidden"
           }`}
         >
