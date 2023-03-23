@@ -13,7 +13,7 @@ const Ratings = ({score}) => {
 
   return (
     <div className="flex mx-2 py-2">
-      {comps.map((stuff) => stuff)}
+      {comps.map((item) => item)}
       <span>({Math.round(Math.random() * 1000)})</span>
     </div>
   );

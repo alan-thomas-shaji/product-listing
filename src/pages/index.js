@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { Button } from "antd";
-import { useState, useEffect } from "react";
+import Head from "next/head";
 
 export default function Home() {
   return (
     <div className="p-4">
+      <Head>
+        <title>Store - HomePage</title>
+      </Head>
       <div className="flex flex-col justify-center items-center mt-[65%] tablet:mt-[30%] desktop:mt-[20%]">
         <h1>HomePage</h1>
         <div className="flex flex-col items-center justify-center ">

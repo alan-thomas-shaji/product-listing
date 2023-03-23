@@ -2,6 +2,9 @@ import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 import Head from "next/head";
 import FilterCategory from "@/components/FilterCategory";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Button } from "antd";
+import { useState } from "react";
 
 export async function getStaticProps() {
   const response1 = await fetch("https://api.escuelajs.co/api/v1/products");
@@ -23,6 +26,10 @@ const Products = ({
   selectedCategory,
   setSelectedCategory,
 }) => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const handleSidemenu = () => {
+    setSidebarOpen(prev => !prev);
+  };
   const filteredProducts =
     selectedCategory && selectedCategory.id
       ? products.filter(
@@ -31,12 +38,24 @@ const Products = ({
       : products;
 
   return (
-    <div className="tablet:mt-32 mobile:mt-36">
+    <div className="tablet:mt-28 mobile:mt-36 desktop:mt-20">
       <Head>
         <title>Store</title>
       </Head>
-      <div className="flex w-full">
-        <div className="listing grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-9/12">
+      <div className="hamburger fixed p-1 rounded-md bg-white hover:scale-105 duration-150 flex flex-col items-center justify-center text-center mobile:block tablet:hidden">
+        <Button className="border-none" onClick={handleSidemenu}>
+          <MenuIcon />
+        </Button>
+        <div className={` ${sidebarOpen ? "hidden" : "block"}`}>
+          <FilterCategory
+            categories={categories}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+          />
+        </div>
+      </div>
+      <div className="flex w-full mobile:justify-center tablet:justify-start tablet:ml-2">
+        <div className="listing grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-4 tablet:w-9/12 mobile:w-11/12">
           {filteredProducts?.map((product) => (
             <Link
               key={product.id}
@@ -52,11 +71,16 @@ const Products = ({
             </Link>
           ))}
         </div>
-        <div className="sidebar fixed top-20 right-0 w-3/12 mt-14 p-1">
+        <div
+          className={`sidebar fixed right-0 w-3/12 tablet:mt-1 p-2 mobile:hidden tablet:block ${
+            sidebarOpen ? "block" : "hidden"
+          }`}
+        >
           <FilterCategory
             categories={categories}
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
+            className="fixed"
           />
         </div>
       </div>

@@ -29,7 +29,7 @@ const SearchBar = ({ products }) => {
   };
 
   return (
-    <div className="relative w-11/12 mx-1">
+    <div className="w-full flex">
       <input
         type="text"
         value={query}
